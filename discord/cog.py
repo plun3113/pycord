@@ -582,11 +582,6 @@ class CogMixin:
 
         cog = self.__cogs.pop(name, None)
         if cog is None:
-            return
-
-        help_command = self._help_command
-        if help_command and help_command.cog is cog:
-            help_command.cog = None
         cog._eject(self)
 
         return cog
@@ -765,7 +760,6 @@ class CogMixin:
 
         This replaces the extension with the same extension, only refreshed. This is
         equivalent to a :meth:`unload_extension` followed by a :meth:`load_extension`
-        except done in an atomic way. That is, if an operation fails mid-reload then
         the bot will roll-back to the prior working state.
 
         Parameters
